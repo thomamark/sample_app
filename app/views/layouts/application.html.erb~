@@ -9,20 +9,16 @@
             <%= render "layouts/shim" %>
     </head> 
     <body>
-      <header class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-        <div class="container">
-             <%= link_to "sample app", '#', id: "logo" %> 
-             <nav> 
-                <ul class="nav pull-right"> 
-                     <li><%= link_to "Home",    '#' %></li>
-                     <li><%= link_to "Help",    '#' %></li>
-                     <li><%= link_to "Sign in", '#' %></li>
-               </ul>
-               </nav>
+       <%= render "layouts/header" %>
+
+       <% flash.each do |key, value| %>
+         <div class="alert alert-<%= key %>"><%= value %></div>
+       <% end %>
+
+       <div class="container"> 
+         <%= yield %> 
+         <%= render "layouts/footer" %>
+         <%= debug(params) if Rails.env.development? %>
        </div>
-       </div>
-       </header>
-       <div class="container"> <%= yield %> </div>
 </body>
 </html>
